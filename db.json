@@ -10,13 +10,13 @@
       "id": "f108",
       "title": "디저트 먹기",
       "content": "아이스크림",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": "e28a",
       "title": "아침 먹기",
       "content": "냠냠",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": "8af1",

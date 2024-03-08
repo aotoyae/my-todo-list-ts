@@ -1,6 +1,6 @@
-export interface Todos {
-  id?: string;
+export type Todos = {
+  id: string;
   content: string;
   title: string;
   isDone: boolean;
-}
+};

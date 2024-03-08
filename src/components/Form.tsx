@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { addTodo } from '../api/todos';
 import { useMutation, useQueryClient } from 'react-query';
+import uuid from 'react-uuid';
 
 function Form() {
   const [title, setTitle] = useState('');
@@ -16,6 +17,7 @@ function Form() {
   const postTodos = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newTodo = {
+      id: uuid(),
       title,
       content,
       isDone: false,
