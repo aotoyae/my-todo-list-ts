@@ -11,6 +11,12 @@ function TodoList({ todos, setTodos }) {
     axios.patch(`http://localhost:4000/todos/${id}`, {
       isDone: !isDone,
     });
+
+    setTodos(
+      todos.map((todo) => {
+        return todo.id === id ? { ...todo, isDone: !isDone } : { todo };
+      })
+    );
   };
 
   return (
@@ -22,7 +28,7 @@ function TodoList({ todos, setTodos }) {
           <section className="btn-section">
             <button
               className="status-btn"
-              onClick={() => patchTodo(todo.is, todo.isDone)}
+              onClick={() => patchTodo(todo.id, todo.isDone)}
             >
               {todo.isDone ? 'finish' : 'ongoing'}
             </button>

@@ -4,13 +4,13 @@
       "id": "1",
       "title": "아침 먹기",
       "content": "요거트",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": "2",
       "title": "점심 먹기",
       "content": "마라탕",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": "3",
@@ -23,12 +23,6 @@
       "title": "디저트 먹기",
       "content": "아이스크림",
       "isDone": true
-    },
-    {
-      "id": "e57f",
-      "title": "a",
-      "content": "a",
-      "isDone": false
     }
   ]
 }

@@ -23,6 +23,7 @@ function TodoContainer() {
   }, []);
 
   console.log(todos);
+
   const ongoingTodos = todos.filter((todo) => todo.isDone === false);
   const finishTodos = todos.filter((todo) => todo.isDone === true);
 
