@@ -13,9 +13,9 @@ export const addTodo = async (newTodo: Todos) => {
 };
 
 // todo isDone 수정
-export const patchTodo = async (id: string, isDone: boolean) => {
-  await axios.patch(`${import.meta.env.VITE_APP_SERVER_URL}/${id}`, {
-    isDone: !isDone,
+export const patchTodo = async (todo: Todos) => {
+  await axios.patch(`${import.meta.env.VITE_APP_SERVER_URL}/${todo.id}`, {
+    isDone: !todo.isDone,
   });
 };
 

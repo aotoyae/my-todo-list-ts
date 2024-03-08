@@ -2,21 +2,19 @@ import { useMutation, useQueryClient } from 'react-query';
 import { deleteTodo, patchTodo } from '../api/todos';
 import { Todos } from '../types/todo';
 
-function TodoList({ todos, isDone }) {
+function TodoList({ todos, isDone }: { todos: Todos; isDone: boolean }) {
   const queryClient = useQueryClient();
-  const mutation = useMutation(patchTodo, {
+  const patchMutation = useMutation(patchTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries('todos'); // todos 무효화
     },
   });
 
-  const isDoneHandler = (id, isDone) => {
-    mutation.mutate(id, isDone);
-  };
-
-  const deletHandler = (id: string) => {
-    deleteTodo(id);
-  };
+  const deleteMutation = useMutation(deleteTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('todos'); // todos 무효화
+    },
+  });
 
   return (
     <ul className="todo-ul">
@@ -29,13 +27,13 @@ function TodoList({ todos, isDone }) {
             <section className="btn-section">
               <button
                 className="status-btn"
-                onClick={() => isDoneHandler(todo.id, todo.isDone)}
+                onClick={() => patchMutation.mutate(todo)}
               >
                 {todo.isDone ? 'finish' : 'ongoing'}
               </button>
               <button
                 className="delete-btn"
-                onClick={() => deletHandler(todo.id)}
+                onClick={() => deleteMutation.mutate(todo.id)}
               >
                 delete
               </button>
