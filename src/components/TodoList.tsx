@@ -1,46 +1,37 @@
-import { useEffect, useState } from 'react';
-import { supabase } from '../supabase/supabaseConfig';
+import axios from 'axios';
 
-type Todos = {
-  content: string | null;
-  createdAt: string;
-  id: string;
-  isDone: boolean | null;
-  title: string | null;
-};
+function TodoList({ todos, setTodos }) {
+  const deleteTodo = async (id: string) => {
+    axios.delete(`http://localhost:4000/todos/${id}`);
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
-function TodoList() {
-  const supaData = supabase;
-  console.log('supaData', supaData);
-
-  const [todos, setTodos] = useState<Todos[]>([]);
-  console.log('todos', todos);
-
-  useEffect(() => {
-    getTodos();
-  }, []);
-
-  const getTodos = async () => {
-    try {
-      console.log('hi');
-      const { data, error } = await supabase.from('todos').select('*');
-      console.log(data);
-      if (error) throw error;
-      if (data !== null) setTodos(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const patchTodo = async (id: string, isDone: boolean) => {
+    axios.patch(`http://localhost:4000/todos/${id}`, {
+      isDone: !isDone,
+    });
   };
 
   return (
-    <div>
-      TodoList
-      <ul>
-        {todos.map((todo) => (
-          <li>{todo.title}</li>
-        ))}
-      </ul>
-    </div>
+    <ul className="todo-ul">
+      {todos.map((todo) => (
+        <li key={todo.id} className="todo-li">
+          <h3>{todo.title}</h3>
+          <p>{todo.content}</p>
+          <section className="btn-section">
+            <button
+              className="status-btn"
+              onClick={() => patchTodo(todo.is, todo.isDone)}
+            >
+              {todo.isDone ? 'finish' : 'ongoing'}
+            </button>
+            <button className="delete-btn" onClick={() => deleteTodo(todo.id)}>
+              delete
+            </button>
+          </section>
+        </li>
+      ))}
+    </ul>
   );
 }
 

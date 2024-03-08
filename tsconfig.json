@@ -19,12 +19,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    // "baseUrl": ".",
-    // "paths": {
-    //   "src/*": ["src/*"],
-    //   "assets/*": ["src/assets/*"],
-    //   "supabase": ["src/supabase/*"],
-    // },
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],

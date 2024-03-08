@@ -3,3 +3,43 @@
   padding: 2rem;
   text-align: center;
 }
+
+.todo-ul {
+  display: flex;
+  gap: 15px;
+}
+
+.todo-li {
+  width: 200px;
+  margin: 5px 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: 1px solid red;
+  border-radius: 20px;
+}
+
+.btn-section {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-section button {
+  font-size: 15px;
+  padding: 5px 10px;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.status-btn {
+  background-color: grey;
+}
+
+.delete-btn {
+  background-color: red;
+}

@@ -1,17 +1,14 @@
 import './App.css';
+import Form from './components/Form';
 
-import TodoList from './components/TodoList';
+import TodoContainer from './components/TodoContainer';
 
 function App() {
   return (
     <>
       <h1>TodoList</h1>
-      <form>
-        <input type="text" placeholder="title" />
-        <input type="text" placeholder="content" />
-        <button>click</button>
-      </form>
-      <TodoList />
+      <Form />
+      <TodoContainer />
     </>
   );
 }
