@@ -16,7 +16,7 @@ function TodoContainer() {
 
   return (
     <div>
-      <Form todos={todos} />
+      <Form />
       <h2>📋</h2>
       <TodoList todos={todos} isDone={false} />
       <TodoList todos={todos} isDone={true} />
