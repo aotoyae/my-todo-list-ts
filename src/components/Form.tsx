@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-function Form() {
+function Form({ todos, setTodos }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -9,11 +9,16 @@ function Form() {
 
   const postTodos = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/todos', {
+    const newTodo = {
       title,
       content,
       isDone: false,
-    });
+    };
+
+    axios.post('http://localhost:4000/todos', newTodo);
+    setTitle('');
+    setContent('');
+    setTodos([...todos, newTodo]);
   };
 
   return (

@@ -2,7 +2,8 @@ import axios from 'axios';
 
 function TodoList({ todos, setTodos }) {
   const deleteTodo = async (id: string) => {
-    axios.delete(`http://localhost:4000/todos/${id}`);
+    const isDelete = confirm('삭제하시겠습니까?');
+    isDelete && axios.delete(`http://localhost:4000/todos/${id}`);
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 

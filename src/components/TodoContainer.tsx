@@ -8,7 +8,7 @@ type Todos = {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import TodoList from './TodoList';
-// import { getTodos } from '../shared/database';
+import Form from './Form';
 
 function TodoContainer() {
   const [todos, setTodos] = useState<Todos[]>([]);
@@ -28,6 +28,7 @@ function TodoContainer() {
 
   return (
     <div>
+      <Form todos={todos} setTodos={setTodos} />
       <h2>📋</h2>
       <TodoList todos={ongoingTodos} setTodos={setTodos} />
       <TodoList todos={finishTodos} setTodos={setTodos} />
