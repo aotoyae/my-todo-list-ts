@@ -1,38 +1,25 @@
-type Todos = {
-  id: string;
-  content: string;
-  title: string;
-  isDone: boolean;
-};
-
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import TodoList from './TodoList';
 import Form from './Form';
+import { getTodos } from '../api/todos';
+import { useQuery } from 'react-query';
 
 function TodoContainer() {
-  const [todos, setTodos] = useState<Todos[]>([]);
+  const { data: todos, isLoading, isError } = useQuery('todos', getTodos);
 
-  const fetchTodos = async () => {
-    const { data } = await axios.get('http://localhost:4000/todos');
-    setTodos(data);
-  };
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
-
-  console.log(todos);
-
-  const ongoingTodos = todos.filter((todo) => todo.isDone === false);
-  const finishTodos = todos.filter((todo) => todo.isDone === true);
+  if (isError) {
+    return <h1>Error...</h1>;
+  }
 
   return (
     <div>
-      <Form todos={todos} setTodos={setTodos} />
+      <Form todos={todos} />
       <h2>📋</h2>
-      <TodoList todos={ongoingTodos} setTodos={setTodos} />
-      <TodoList todos={finishTodos} setTodos={setTodos} />
+      <TodoList todos={todos} isDone={false} />
+      <TodoList todos={todos} isDone={true} />
     </div>
   );
 }

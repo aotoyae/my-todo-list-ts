@@ -1,16 +1,19 @@
-import axios from 'axios';
 import { useState } from 'react';
+import { addTodo } from '../api/todos';
+import { useMutation, useQueryClient } from 'react-query';
 
-function Form({ todos, setTodos }) {
+function Form() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  const fetchTodos = async () => {
-    const { data } = await axios.get('http://localhost:4000/todos');
-    setTodos(data);
-  };
+  const queryClient = useQueryClient();
+  const mutation = useMutation(addTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('todos'); // todos 무효화
+    },
+  });
 
-  const postTodos = async (e: React.FormEvent<HTMLFormElement>) => {
+  const postTodos = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newTodo = {
       title,
@@ -18,10 +21,9 @@ function Form({ todos, setTodos }) {
       isDone: false,
     };
 
-    await axios.post('http://localhost:4000/todos', newTodo);
+    mutation.mutate(newTodo);
     setTitle('');
     setContent('');
-    fetchTodos();
   };
 
   return (
