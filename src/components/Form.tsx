@@ -5,7 +5,10 @@ function Form({ todos, setTodos }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  console.log(title, content);
+  const fetchTodos = async () => {
+    const { data } = await axios.get('http://localhost:4000/todos');
+    setTodos(data);
+  };
 
   const postTodos = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,10 +18,10 @@ function Form({ todos, setTodos }) {
       isDone: false,
     };
 
-    axios.post('http://localhost:4000/todos', newTodo);
+    await axios.post('http://localhost:4000/todos', newTodo);
     setTitle('');
     setContent('');
-    setTodos([...todos, newTodo]);
+    fetchTodos();
   };
 
   return (
