@@ -17,10 +17,10 @@ function TodoList({ todos, isDone }: { todos: Todos; isDone: boolean }) {
   });
 
   return (
-    <ul className="todo-ul">
-      {todos
-        .filter((todo: Todos) => todo.isDone === isDone)
-        .map((todo: Todos) => (
+    <>
+      <h4>{isDone ? 'finish' : 'ongoing'}</h4>
+      <ul className="todo-ul">
+        {todos.map((todo: Todos) => (
           <li key={todo.id} className="todo-li">
             <h3>{todo.title}</h3>
             <p>{todo.content}</p>
@@ -40,7 +40,8 @@ function TodoList({ todos, isDone }: { todos: Todos; isDone: boolean }) {
             </section>
           </li>
         ))}
-    </ul>
+      </ul>
+    </>
   );
 }
 
