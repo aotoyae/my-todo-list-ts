@@ -16,7 +16,7 @@ function TodoContainer() {
   }
 
   const ongoingTodos = todos.filter((todo: Todos) => todo.isDone === false);
-  const finishTodos = todos.filter((todo: Todos) => todo.isDone === false);
+  const finishTodos = todos.filter((todo: Todos) => todo.isDone === true);
 
   return (
     <div>
