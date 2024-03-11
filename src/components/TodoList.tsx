@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { deleteTodo, patchTodo } from '../api/todos';
+import { Todo } from '../types/todo';
 import { Todos } from '../types/todo';
 
 function TodoList({ todos, isDone }: { todos: Todos; isDone: boolean }) {
@@ -20,7 +21,7 @@ function TodoList({ todos, isDone }: { todos: Todos; isDone: boolean }) {
     <>
       <h4>{isDone ? 'finish' : 'ongoing'}</h4>
       <ul className="todo-ul">
-        {todos.map((todo: Todos) => (
+        {todos.map((todo: Todo) => (
           <li key={todo.id} className="todo-li">
             <h3>{todo.title}</h3>
             <p>{todo.content}</p>

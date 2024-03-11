@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { Todos } from '../types/todo';
+import { Todo } from '../types/todo';
+// import { Todos } from '../types/todo';
 
 // todos 가져오기
 export const getTodos = async () => {
@@ -8,12 +9,12 @@ export const getTodos = async () => {
 };
 
 // todo 추가
-export const addTodo = async (newTodo: Todos) => {
+export const addTodo = async (newTodo: Todo) => {
   await axios.post(import.meta.env.VITE_APP_SERVER_URL, newTodo);
 };
 
 // todo isDone 수정
-export const patchTodo = async (todo: Todos) => {
+export const patchTodo = async (todo: Todo) => {
   await axios.patch(`${import.meta.env.VITE_APP_SERVER_URL}/${todo.id}`, {
     isDone: !todo.isDone,
   });
